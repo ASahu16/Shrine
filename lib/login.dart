@@ -8,7 +8,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // TODO: Add text editing controllers (101)
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +28,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 120.0),
             // TODO: Remove filled: true values (103)
             // [Name]
-            const TextField(
-              decoration: InputDecoration(
+             TextField(
+              controller: _usernameController,
+              decoration: const InputDecoration(
                 filled: true,
                 labelText: 'Username',
               ),
@@ -36,8 +38,9 @@ class _LoginPageState extends State<LoginPage> {
             // spacer
             const SizedBox(height: 12.0),
             // [Password]
-            const TextField(
-              decoration: InputDecoration(
+             TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(
                 filled: true,
                 labelText: 'Password',
               ),
@@ -50,11 +53,16 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   // If you passed null, or didn't include the field (which
                   // then defaults to null), the buttons would become disabled.
-                  onPressed: () {},
+                  onPressed: () {
+                    _usernameController.clear();
+                    _passwordController.clear();
+                  },
                   child: const Text('CANCEL'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: const Text('NEXT'),
                 )
               ],
