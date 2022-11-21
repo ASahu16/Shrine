@@ -43,7 +43,22 @@ class _LoginPageState extends State<LoginPage> {
               ),
               obscureText: true,
             ),
-            // TODO: Add button bar (101)
+            // The OverflowBar arranges its children in a row.
+            OverflowBar(
+              alignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  // If you passed null, or didn't include the field (which
+                  // then defaults to null), the buttons would become disabled.
+                  onPressed: () {},
+                  child: const Text('CANCEL'),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('NEXT'),
+                )
+              ],
+            )
           ],
         ),
       ),
