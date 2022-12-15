@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:flutter/foundation.dart' as foundation;
+
 import 'package:flutter/material.dart';
 import 'package:shrine/model/product.dart';
 import 'package:shrine/model/products_repository.dart';
@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   List<Card> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
-    if (products == null || products.isEmpty) {
+    if (products.isEmpty) {
       return const <Card>[];
     }
     final ThemeData theme = Theme.of(context);
@@ -28,7 +28,6 @@ class HomePage extends StatelessWidget {
                     child: Image.asset(
                       product.assetName,
                       package: product.assetPackage,
-                      // TODO: Adjust the box size (102)
                       fit: BoxFit.fitWidth,
                     ),
                   ),
@@ -42,14 +41,14 @@ class HomePage extends StatelessWidget {
                         children: [
                           // TODO: Handle overflowing labels (103)
                           Text(
-                            product.name,
-                            style: theme.textTheme.headline6,
-                            maxLines: 1,
+                            'Now we will test when it will go overflow the widget', // product.name,
+                            style: theme.textTheme.titleLarge,
+                            // maxLines: 1,
                           ),
                           const SizedBox(height: 8.0),
                           Text(
                             formatter.format(product.price),
-                            style: theme.textTheme.subtitle2,
+                            style: theme.textTheme.titleSmall,
                           ),
                         ],
                       ),
@@ -74,18 +73,14 @@ class HomePage extends StatelessWidget {
             semanticLabel: 'menu',
           ),
           onPressed: () {
-            if (foundation.kDebugMode) {
-              print('Menu button');
-            }
+            debugPrint('Menu button');
           },
         ),
         title: const Text('SHRINE'),
         actions: [
           IconButton(
             onPressed: () {
-              if (foundation.kDebugMode) {
-                print('Search button');
-              }
+              debugPrint('Search button');
             },
             icon: const Icon(
               Icons.search,
@@ -94,9 +89,7 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              if (foundation.kDebugMode) {
-                print('Filter button');
-              }
+              debugPrint('Filter button');
             },
             icon: const Icon(
               Icons.tune,
